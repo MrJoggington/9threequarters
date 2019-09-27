@@ -8,6 +8,9 @@ var passportConfig = require("./config/passport")
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// salt const
+SALT_WORK_FACTOR = 14;
+
 // Middleware
 app.use(express.urlencoded({
   extended: false
