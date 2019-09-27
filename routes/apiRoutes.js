@@ -2,11 +2,16 @@ var db = require("../models");
 
 module.exports = function (app) {
   // auth test 
-  app.get('/api/users/me',
-    passport.authenticate('basic', { session: false }),
-    function (req, res) {
-      res.json({ id: req.user.id, username: req.user.username });
-    });
+  app.get('/login', function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/login'); }
+      req.logIn(user, function (err) {
+        if (err) { return next(err); }
+        return res.redirect('/users/' + user.username);
+      });
+    })(req, res, next);
+  });
   // Get all posts
   app.get("/api/platform", function (req, res) {
     db.Platform.findAll({}).then(function (dbPlatform) {
