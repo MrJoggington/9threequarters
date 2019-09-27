@@ -1,34 +1,32 @@
-var path = require('path')
+var path = require("path");
 
 module.exports = function (app) {
-  // Load home page
+  // Load Home page
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/home.html"))
+    res.sendFile(path.join(__dirname, "../public/home.html"))
   })
 
-  // Load hogwarts page with all houses on it
+  //Load Hogwarts page with all houses on it
   app.get("/hogwarts", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/hogwarts.html"))
+    res.sendFile(path.join(__dirname, "../public/hogwarts.html"))
   })
 
-  // Load gryffindor house page
+  //Load Gryffindor house page
   app.get("/gryffindor", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/gryffindor.html"))
+    res.sendFile(path.join(__dirname, "../public/gryffindor.html"))
   })
 
-  // Load hufflepuff house page
+  //Load Hufflepuff house page
   app.get("/hufflepuff", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/hufflepuff.html"))
+    res.sendFile(path.join(__dirname, "../public/hufflepuff.html"))
   })
 
-  // Load ravenclaw house page
+  //Load Ravenclaw house page
   app.get("/ravenclaw", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/ravenclaw.html"))
+    res.sendFile(path.join(__dirname, "../public/ravenclaw.html"))
   })
 
-  // Load slytherin house page
+  //Load Slytherin house page
   app.get("/slytherin", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/slytherin.html"))
+    res.sendFile(path.join(__dirname, "../public/slytherin.html"))
   })
-
-};
