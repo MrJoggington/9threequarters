@@ -7,6 +7,8 @@ var passport = require("passport");
 var passportConfig = require("./config/passport")
 var app = express();
 var PORT = process.env.PORT || 3000;
+var cookieSession = require('cookie-session')
+var bodyParser = require('body-parser')
 
 // salt const
 SALT_WORK_FACTOR = 14;
@@ -16,12 +18,11 @@ app.use(express.urlencoded({
   extended: false
 }));
 app.use(express.json());
-app.use(express.bodyParser());
-app.use(express.cookieParser());
-app.use(express.session({ secret: "keyboard hero" }))
+app.use(bodyParser());;
+app.use(cookieSession({ secret: "keyboard hero" }))
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(app.router)
+
 // static directory
 app.use(express.static("public"));
 

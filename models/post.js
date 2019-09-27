@@ -18,5 +18,5 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER
     }
   });
-  return Example;
+  return Post;
 };

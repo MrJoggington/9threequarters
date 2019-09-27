@@ -9,7 +9,7 @@ passport.serializeUser(function (user, done) {
 })
 
 //deserialize sessions
-passport.deserialiseUser(function (user, done) {
+passport.deserializeUser(function (user, done) {
     db.User.find({ where: { id: user.id } }).success(function (user) {
         done(null, user);
     }).error(function (err) {
