@@ -1,6 +1,12 @@
 var db = require("../models");
 
 module.exports = function (app) {
+  // auth test 
+  app.get('/api/users/me',
+    passport.authenticate('basic', { session: false }),
+    function (req, res) {
+      res.json({ id: req.user.id, username: req.user.username });
+    });
   // Get all posts
   app.get("/api/platform", function (req, res) {
     db.Platform.findAll({}).then(function (dbPlatform) {

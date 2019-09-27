@@ -28,6 +28,10 @@ module.exports = function (app) {
 
   //Load Slytherin house page
   app.get("/slytherin", function (req, res) {
+<<<<<<< HEAD
     res.sendFile(path.join(__dirname, "../public/html/slytherin.html"))
+=======
+    res.sendFile(path.join(__dirname, "../public/slytherin.html"))
+>>>>>>> 7b211edb0e0f2dcd15f833b8afa5d96d72817aed
   })
 }
