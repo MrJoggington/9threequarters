@@ -1,9 +1,9 @@
-var db = require("../models");
+var Post = require("../models");
 
 module.exports = function (app) {
   // auth sign up test
   app.post('/register', function (req, res) {
-    db.User.create({
+    Post.User.create({
       username: req.body.username,
       password: req.body.password
     }).then(function (results) {
@@ -24,7 +24,7 @@ module.exports = function (app) {
   });
   // Get all posts
   app.get("/api/platform", function (req, res) {
-    db.findAll({}).then(function (results) {
+    Post.findAll({}).then(function (results) {
       res.json(results)
     });
   });
@@ -33,7 +33,7 @@ module.exports = function (app) {
   app.post("/api/platform", function (req, res) {
     console.log("Thread Data:");
     console.log(req.body);
-    db.create({
+    Post.create({
       title: req.body.title,
       body: req.body.body
     }).then(function (results) {
@@ -43,14 +43,14 @@ module.exports = function (app) {
 
   // Delete an post by id
   app.delete("/api/platform/:id", function (req, res) {
-    db.destroy({ where: { id: req.params.id } }).then(function (results) {
+    Post.destroy({ where: { id: req.params.id } }).then(function (results) {
       res.json(results);
     });
   });
 
   //Update a post
   app.put("/api/platform", function (req, res) {
-    db.update({
+    Post.update({
       title: req.body.title,
       body: req.body.body
     }, {
