@@ -15,10 +15,65 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
+    <div class="jumbotron">
+        <h1>Slytherin House</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./hogwarts.html">Hogwarts<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ravenclaw.html">Ravenclaw</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./hufflepuff.html">Hufflepuff</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./gryffindor.html">Gryffindor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./home.html">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h2>
+                The Latest Posts
+            </h2>
+            <hr>
+            <div id="post-area"></div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <p>Make a post!</p>
+                <textarea class="form-control" rows="3" id="body" placeholder="Enter text here"></textarea>
+                <button id="post-submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // some jquery (or a lot)
+    </script>
 
 </body>
 
