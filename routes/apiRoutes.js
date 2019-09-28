@@ -1,11 +1,21 @@
 var db = require("../models");
 
 module.exports = function (app) {
-  // auth test 
+  // auth sign up test
+  app.post('/register', function (req, res) {
+    db.User.create({
+      username: req.body.username,
+      password: req.body.password
+    }).then(function (results) {
+      console.log(results)
+      res.redirect('/home')
+    })
+  })
+  // auth test  
   app.get('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
       if (err) { return next(err); }
-      if (!user) { return res.redirect('/login'); }
+      if (!user) { return res.redirect('/home'); }
       req.logIn(user, function (err) {
         if (err) { return next(err); }
         return res.redirect('/users/' + user.username);
