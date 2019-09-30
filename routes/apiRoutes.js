@@ -1,9 +1,9 @@
-var db = require("../models");
+var Post = require("../models");
 
 module.exports = function (app) {
   // auth sign up test
   app.post('/register', function (req, res) {
-    db.User.create({
+    Post.User.create({
       username: req.body.username,
       password: req.body.password
     }).then(function (results) {
@@ -24,39 +24,41 @@ module.exports = function (app) {
   });
   // Get all posts
   app.get("/api/platform", function (req, res) {
-    db.Platform.findAll({}).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    Post.findAll({}).then(function (results) {
+      res.json(results)
     });
   });
 
   // Create a new post
   app.post("/api/platform", function (req, res) {
-    db.Platform.create({
+    console.log("Thread Data:");
+    console.log(req.body);
+    Post.create({
       title: req.body.title,
       body: req.body.body
-    }).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    }).then(function (results) {
+      res.end();
     });
   });
 
   // Delete an post by id
   app.delete("/api/platform/:id", function (req, res) {
-    db.Platform.destroy({ where: { id: req.params.id } }).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    Post.destroy({ where: { id: req.params.id } }).then(function (results) {
+      res.json(results);
     });
   });
 
   //Update a post
   app.put("/api/platform", function (req, res) {
-    db.Platform.update({
+    Post.update({
       title: req.body.title,
       body: req.body.body
     }, {
       where: {
         id: req.body.id
       }
-    }).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    }).then(function (results) {
+      res.json(results);
     })
       .catch(function (err) {
         res.json(err);
