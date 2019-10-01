@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+var db = require("../models");
+var passport = require("passport")
+module.exports = function (app) {
+  // auth sign up test
+  app.post('/register', passport.authenticate('local-signup', {
+    successRedirect: '/gryffindor',
+
+    failureRedirect: '/home'
+  }
+
+  ));
+=======
 var Post = require("../models");
 
 module.exports = function (app) {
@@ -11,17 +24,14 @@ module.exports = function (app) {
       res.redirect('/home')
     })
   })
+>>>>>>> 847f09295141bd696ad58b9b09598899453e5b17
   // auth test  
-  app.get('/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-      if (err) { return next(err); }
-      if (!user) { return res.redirect('/home'); }
-      req.logIn(user, function (err) {
-        if (err) { return next(err); }
-        return res.redirect('/users/' + user.username);
-      });
-    })(req, res, next);
-  });
+  app.post('/login',
+    passport.authenticate('local-signin', {
+      successRedirect: '/home',
+      failureRedirect: '/hogwarts',
+    })
+  );
   // Get all posts
   app.get("/api/platform", function (req, res) {
     Post.findAll({}).then(function (results) {
