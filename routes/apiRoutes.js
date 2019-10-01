@@ -1,27 +1,21 @@
 var db = require("../models");
-
+var passport = require("passport")
 module.exports = function (app) {
   // auth sign up test
-  app.post('/register', function (req, res) {
-    db.User.create({
-      username: req.body.username,
-      password: req.body.password
-    }).then(function (results) {
-      console.log(results)
-      res.redirect('/home')
-    })
-  })
+  app.post('/register', passport.authenticate('local-signup', {
+    successRedirect: '/gryffindor',
+
+    failureRedirect: '/home'
+  }
+
+  ));
   // auth test  
-  app.get('/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-      if (err) { return next(err); }
-      if (!user) { return res.redirect('/home'); }
-      req.logIn(user, function (err) {
-        if (err) { return next(err); }
-        return res.redirect('/users/' + user.username);
-      });
-    })(req, res, next);
-  });
+  app.post('/login',
+    passport.authenticate('local-signin', {
+      successRedirect: '/home',
+      failureRedirect: '/hogwarts',
+    })
+  );
   // Get all posts
   app.get("/api/platform", function (req, res) {
     db.Platform.findAll({}).then(function (dbPlatform) {
