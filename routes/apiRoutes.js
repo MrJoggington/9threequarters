@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-var db = require("../models");
-var passport = require("passport")
-module.exports = function (app) {
-  // auth sign up test
-  app.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/gryffindor',
-
-    failureRedirect: '/home'
-  }
-
-  ));
-=======
 var Post = require("../models");
 
 module.exports = function (app) {
@@ -24,7 +11,6 @@ module.exports = function (app) {
       res.redirect('/home')
     })
   })
->>>>>>> 847f09295141bd696ad58b9b09598899453e5b17
   // auth test  
   app.post('/login',
     passport.authenticate('local-signin', {
