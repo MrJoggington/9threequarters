@@ -1,4 +1,4 @@
-var bCrypt = require('bcrypt');
+var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function (passport, user) {
     var User = user
@@ -21,7 +21,6 @@ module.exports = function (passport, user) {
 
 
         function (req, username, password, done) {
-
             var generateHash = function (password) {
 
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
@@ -44,7 +43,7 @@ module.exports = function (passport, user) {
 
                 } else {
 
-                    var userPassword = generateHash(req.body.password);
+                    var userPassword = generateHash(password);
 
 
 
@@ -82,9 +81,9 @@ module.exports = function (passport, user) {
 
             // by default, local strategy uses username and password, we will override with email
 
-            // usernameField: 'username',
+            usernameField: 'username',
 
-            // passwordField: 'password',
+            passwordField: 'password',
 
             passReqToCallback: true // allows us to pass back the entire request to the callback
 
