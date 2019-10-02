@@ -13,7 +13,6 @@ module.exports = function (app) {
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
       successRedirect: '/hogwarts',
-
       failureRedirect: '/'
     }
 
@@ -22,8 +21,8 @@ module.exports = function (app) {
   // auth test  
   app.post('/login',
     passport.authenticate('local-signin', {
-      successRedirect: '/home',
-      failureRedirect: '/hogwarts',
+      successRedirect: '/hogwarts',
+      failureRedirect: '/',
     })
   );
   // Get all posts
@@ -77,12 +76,8 @@ module.exports = function (app) {
 
   // checks to see if ya logged in
   function isLoggedIn(req, res, next) {
-
     if (req.isAuthenticated())
-
-      return next();
-
-    res.redirect('/signin');
-
+      return next()
+    res.redirect("/signin")
   }
 };
