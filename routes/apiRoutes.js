@@ -1,53 +1,63 @@
 var db = require("../models");
-
+var passport = require("passport")
 module.exports = function (app) {
-  // auth test 
-  app.get('/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-      if (err) { return next(err); }
-      if (!user) { return res.redirect('/login'); }
-      req.logIn(user, function (err) {
-        if (err) { return next(err); }
-        return res.redirect('/users/' + user.username);
-      });
-    })(req, res, next);
-  });
+  // auth sign up test
+  app.post('/register', passport.authenticate('local-signup', {
+      successRedirect: '/gryffindor',
+
+      failureRedirect: '/home'
+    }
+
+  ));
+  // auth test  
+  app.post('/login',
+    passport.authenticate('local-signin', {
+      successRedirect: '/home',
+      failureRedirect: '/hogwarts',
+    })
+  );
   // Get all posts
   app.get("/api/platform", function (req, res) {
-    db.Platform.findAll({}).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    Post.findAll({}).then(function (results) {
+      res.json(results)
     });
   });
 
   // Create a new post
   app.post("/api/platform", function (req, res) {
-    db.Platform.create({
+    console.log("Thread Data:");
+    console.log(req.body);
+    Post.create({
       title: req.body.title,
       body: req.body.body
-    }).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    }).then(function (results) {
+      res.end();
     });
   });
 
   // Delete an post by id
   app.delete("/api/platform/:id", function (req, res) {
-    db.Platform.destroy({ where: { id: req.params.id } }).then(function (dbPlatform) {
-      res.json(dbPlatform);
+    Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (results) {
+      res.json(results);
     });
   });
 
   //Update a post
   app.put("/api/platform", function (req, res) {
-    db.Platform.update({
-      title: req.body.title,
-      body: req.body.body
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function (dbPlatform) {
-      res.json(dbPlatform);
-    })
+    Post.update({
+        title: req.body.title,
+        body: req.body.body
+      }, {
+        where: {
+          id: req.body.id
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
       .catch(function (err) {
         res.json(err);
       });
