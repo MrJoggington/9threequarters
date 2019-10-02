@@ -1,4 +1,5 @@
 var Post = require("../models");
+var passport = require("passport")
 
 module.exports = function (app) {
   // auth sign up test
