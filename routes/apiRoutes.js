@@ -1,5 +1,7 @@
+
 var db = require("../models");
 var passport = require("passport")
+
 module.exports = function (app) {
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
@@ -9,6 +11,7 @@ module.exports = function (app) {
     }
 
   ));
+
   // auth test  
   app.post('/login',
     passport.authenticate('local-signin', {
@@ -58,6 +61,7 @@ module.exports = function (app) {
       }).then(function (results) {
         res.json(results);
       })
+
       .catch(function (err) {
         res.json(err);
       });
