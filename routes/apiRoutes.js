@@ -1,7 +1,13 @@
-<<<<<<< HEAD
-var db = require("../models");
 var passport = require("passport")
 module.exports = function (app) {
+  app.get('/profile', isLoggedIn), function (req, res) {
+    res.redirect("/hello")
+  }
+  // logout button
+  app.get('/logout', function (req, res) {
+    req.Session = null
+    res.redirect('/')
+  })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
     successRedirect: '/gryffindor',
@@ -10,21 +16,6 @@ module.exports = function (app) {
   }
 
   ));
-=======
-var Post = require("../models");
-
-module.exports = function (app) {
-  // auth sign up test
-  app.post('/register', function (req, res) {
-    Post.User.create({
-      username: req.body.username,
-      password: req.body.password
-    }).then(function (results) {
-      console.log(results)
-      res.redirect('/home')
-    })
-  })
->>>>>>> 847f09295141bd696ad58b9b09598899453e5b17
   // auth test  
   app.post('/login',
     passport.authenticate('local-signin', {
@@ -74,4 +65,14 @@ module.exports = function (app) {
         res.json(err);
       });
   });
+  // checks to see if ya logged in
+  function isLoggedIn(req, res, next) {
+
+    if (req.isAuthenticated())
+
+      return next();
+
+    res.redirect('/signin');
+
+  }
 };
