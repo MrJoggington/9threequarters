@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -66,6 +69,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <p>Make a post!</p>
+                <input class="form-control" type="text" id="title" placeholder="Enter the title">
                 <textarea class="form-control" rows="3" id="body" placeholder="Enter text here"></textarea>
                 <button id="post-submit">Submit</button>
             </div>
@@ -73,7 +77,58 @@
     </div>
 
     <script>
-        // some jquery (or a lot)
+        $("#post-submit").on("click", function (event) {
+            event.preventDefault();
+
+            // Make a newPost object
+            var newPost = {
+                title: $("#title").val().trim(),
+                body: $("#body").val().trim(),
+                created_at: moment().format("YYYY-MM-DD HH:mm:ss")
+            };
+
+            $.post("/api/platform", newPost)
+                // On success, run the following code
+                .then(function () {
+
+                    var row = $("<div>");
+                    row.addClass("post");
+
+                    row.append("<p>" + newPost.title + "  </p>");
+                    row.append("<p>" + newPost.body + "</p>");
+                    row.append("<p>At " + moment(newPost.created_at).format("h:mma on dddd") + "</p>");
+
+                    $("#post-area").prepend(row);
+
+                });
+
+            // Empty each input box by replacing the value with an empty string
+            $("#title").val("");
+            $("#body").val("");
+        });
+
+
+        $.get("/api/platform", function (data) {
+
+            if (data.length !== 0) {
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var row = $("<div>");
+                    row.addClass("post");
+
+                    row.append("<p>" + data[i].author + "</p>");
+                    row.append("<p>" + data[i].body + "</p>");
+                    row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") +
+                        "</p>");
+
+                    $("#post-area").prepend(row);
+
+                }
+
+            }
+
+        })
     </script>
 
 </body>
