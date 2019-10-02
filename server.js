@@ -54,7 +54,7 @@ app.use(express.static("public"));
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-// require('./config/passport.js')(passport, db.User);
+require('./config/passport.js')(passport, db.User);
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync().then(function () {
