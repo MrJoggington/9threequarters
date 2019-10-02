@@ -71,9 +71,6 @@ module.exports = function (app) {
         res.json(err);
       });
   });
-
-
-
   // checks to see if ya logged in
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
