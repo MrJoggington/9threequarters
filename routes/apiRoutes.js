@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
-var db = require("../models");
->>>>>>> dcae2954e8c753a85a62ba48d31179ae6026faa7
 var passport = require("passport")
 
 module.exports = function (app) {
@@ -16,21 +11,17 @@ module.exports = function (app) {
   })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
-      successRedirect: '/gryffindor',
+    successRedirect: '/gryffindor',
 
-      failureRedirect: '/home'
-    }
+    failureRedirect: '/home'
+  }
 
   ));
-<<<<<<< HEAD
-=======
-
->>>>>>> dcae2954e8c753a85a62ba48d31179ae6026faa7
   // auth test  
   app.post('/login',
     passport.authenticate('local-signin', {
-      successRedirect: '/home',
-      failureRedirect: '/hogwarts',
+      successRedirect: '/hogwarts',
+      failureRedirect: '/',
     })
   );
   // Get all posts
@@ -66,21 +57,20 @@ module.exports = function (app) {
   //Update a post
   app.put("/api/platform", function (req, res) {
     Post.update({
-        title: req.body.title,
-        body: req.body.body
-      }, {
-        where: {
-          id: req.body.id
-        }
-      }).then(function (results) {
-        res.json(results);
-      })
+      title: req.body.title,
+      body: req.body.body
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (results) {
+      res.json(results);
+    })
 
       .catch(function (err) {
         res.json(err);
       });
   });
-<<<<<<< HEAD
   // checks to see if ya logged in
   function isLoggedIn(req, res, next) {
 
@@ -92,6 +82,3 @@ module.exports = function (app) {
 
   }
 };
-=======
-};
->>>>>>> dcae2954e8c753a85a62ba48d31179ae6026faa7
