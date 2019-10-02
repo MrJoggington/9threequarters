@@ -1,9 +1,10 @@
 var passport = require("passport")
 
 module.exports = function (app) {
-  app.get('/profile', isLoggedIn), function (req, res) {
-    res.redirect("/hello")
-  }
+  app.get('/profile', isLoggedIn),
+    function (req, res) {
+      res.redirect("/hello")
+    }
   // logout button
   app.get('/logout', function (req, res) {
     req.Session = null
@@ -15,6 +16,7 @@ module.exports = function (app) {
 
     failureRedirect: '/home'
   }
+
 
   ));
   // auth test
@@ -57,16 +59,15 @@ module.exports = function (app) {
   //Update a post
   app.put("/api/platform", function (req, res) {
     Post.update({
-      title: req.body.title,
-      body: req.body.body
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function (results) {
-      res.json(results);
-    })
-
+        title: req.body.title,
+        body: req.body.body
+      }, {
+        where: {
+          id: req.body.id
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
       .catch(function (err) {
         res.json(err);
       });
