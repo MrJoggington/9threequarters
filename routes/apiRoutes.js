@@ -12,13 +12,14 @@ module.exports = function (app) {
   })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
-      successRedirect: '/hogwarts',
-      failureRedirect: '/'
-    }
+    successRedirect: '/gryffindor',
+
+    failureRedirect: '/home'
+  }
+
 
   ));
-
-  // auth test  
+  // auth test
   app.post('/login',
     passport.authenticate('local-signin', {
       successRedirect: '/hogwarts',

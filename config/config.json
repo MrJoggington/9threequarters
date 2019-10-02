@@ -2,6 +2,7 @@
   "development": {
     "username": "root",
     "password": "Ky27Ls$10pQ9d",
+
     "database": "platform_db",
     "host": "localhost",
     "dialect": "mysql"
