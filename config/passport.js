@@ -43,7 +43,7 @@ module.exports = function (passport, user) {
 
                 } else {
 
-                    var userPassword = generateHash(req.body.password);
+                    var userPassword = generateHash(password);
 
 
 
