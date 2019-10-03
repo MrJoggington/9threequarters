@@ -1,20 +1,29 @@
 var passport = require("passport")
-
+var db = require("../models")
 module.exports = function (app) {
   app.get('/profile', isLoggedIn),
     function (req, res) {
-      res.redirect("/hello")
+      res.redirect("/profile")
     }
   // logout button
   app.get('/logout', function (req, res) {
-    req.Session = null
+    req.session = null
+    console.log(req.session)
     res.redirect('/')
   })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
+<<<<<<< HEAD
       successRedirect: '/hogwarts',
       failureRedirect: '/'
     }
+=======
+    successRedirect: '/gryffindor',
+
+    failureRedirect: '/home'
+  }
+
+>>>>>>> e8356a47022a0069fee6cb756418bc49cef59369
 
   ));
   // auth test
@@ -26,7 +35,7 @@ module.exports = function (app) {
   );
   // Get all posts
   app.get("/api/platform", function (req, res) {
-    Post.findAll({}).then(function (results) {
+    db.Post.findAll({}).then(function (results) {
       res.json(results)
     });
   });
@@ -35,7 +44,7 @@ module.exports = function (app) {
   app.post("/api/platform", function (req, res) {
     console.log("Thread Data:");
     console.log(req.body);
-    Post.create({
+    db.Post.create({
       title: req.body.title,
       body: req.body.body
     }).then(function (results) {
@@ -45,7 +54,7 @@ module.exports = function (app) {
 
   // Delete an post by id
   app.delete("/api/platform/:id", function (req, res) {
-    Post.destroy({
+    db.Post.destroy({
       where: {
         id: req.params.id
       }
@@ -56,24 +65,30 @@ module.exports = function (app) {
 
   //Update a post
   app.put("/api/platform", function (req, res) {
-    Post.update({
-        title: req.body.title,
-        body: req.body.body
-      }, {
-        where: {
-          id: req.body.id
-        }
-      }).then(function (results) {
-        res.json(results);
-      })
+    db.Post.update({
+      title: req.body.title,
+      body: req.body.body
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (results) {
+      res.json(results);
+    })
       .catch(function (err) {
         res.json(err);
       });
   });
   // checks to see if ya logged in
   function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
       return next()
-    res.redirect("/signin")
+    } else {
+      res.redirect("/signin")
+    }
   }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> e8356a47022a0069fee6cb756418bc49cef59369

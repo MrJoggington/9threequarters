@@ -1,6 +1,10 @@
 var path = require("path");
 
 module.exports = function (app) {
+  // profile page test
+  app.get("/profile", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/profile.html"))
+  })
   // Load Home page
   app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/home.html"))
