@@ -36,7 +36,7 @@ $.get("/api/platform", function (data) {
         for (var i = 0; i < data.length; i++) {
 
             var row = $("<div>");
-            row.addClass("post");
+            row.addClass("post"); j
 
             row.append("<p>" + data[i].title + "</p>");
             row.append("<p>" + data[i].body + "</p>");

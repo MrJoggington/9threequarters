@@ -10,5 +10,13 @@ module.exports = function (sequelize, DataTypes) {
         {
             dialect: 'mysql'
         });
+
+        User.associate = function(models) {
+
+            User.hasMany(models.Post, {
+                onDelete: "cascade"
+            })
+        }
+
     return User
 }
