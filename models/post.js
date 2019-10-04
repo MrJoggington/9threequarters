@@ -14,9 +14,9 @@ module.exports = function (sequelize, DataTypes) {
         len: [1, 2000]
       }
     },
-    rating: {
-      type: DataTypes.INTEGER
-    }
+    // rating: {
+    //   type: DataTypes.INTEGER
+    // }
   });
   return Post;
 };
