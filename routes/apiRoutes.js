@@ -1,9 +1,21 @@
 var passport = require("passport")
 var db = require("../models")
+
+
 module.exports = function (app) {
+  app.get('/api/hogwarts', function (req, res) {
+    db.User.findAll({
+      where: {
+        id: req.session.passport.user
+      }
+    }).then(function (results) {
+      console.log(results[0].dataValues.username)
+      res.json(results[0].dataValues.username)
+    })
+  })
   app.get('/profile', isLoggedIn),
     function (req, res) {
-      res.redirect("/profile")
+      res.json(results)
     }
   // logout button
   app.get('/logout', function (req, res) {
@@ -13,9 +25,9 @@ module.exports = function (app) {
   })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/gryffindor',
+    successRedirect: '/hogwarts',
 
-    failureRedirect: '/home'
+    failureRedirect: '/'
   }
 
 
@@ -29,15 +41,18 @@ module.exports = function (app) {
   );
   // Get all posts
   app.get("/api/platform", function (req, res) {
+
     db.Post.findAll({}).then(function (results) {
       res.json(results)
     });
+
   });
 
   // Create a new post
   app.post("/api/platform", function (req, res) {
     console.log("Thread Data:");
     console.log(req.body);
+    console.log(req.session.passport.user)
     db.Post.create({
       title: req.body.title,
       body: req.body.body
