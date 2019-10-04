@@ -13,17 +13,11 @@ module.exports = function (app) {
   })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
-<<<<<<< HEAD
-      successRedirect: '/hogwarts',
-      failureRedirect: '/'
-    }
-=======
-    successRedirect: '/gryffindor',
+    successRedirect: '/hogwarts',
 
-    failureRedirect: '/home'
+    failureRedirect: '/'
   }
 
->>>>>>> e8356a47022a0069fee6cb756418bc49cef59369
 
   ));
   // auth test
@@ -87,8 +81,4 @@ module.exports = function (app) {
       res.redirect("/signin")
     }
   }
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> e8356a47022a0069fee6cb756418bc49cef59369
