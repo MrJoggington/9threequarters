@@ -47,6 +47,7 @@ $.get("/api/gryffindor", function (data) {
 
         }
 
+
     }
 
 })

@@ -49,7 +49,8 @@ module.exports = function (passport, user) {
 
                     User.create({
                         username: req.body.username,
-                        password: userPassword
+                        password: userPassword,
+                        House: req.body.house
                     }).then(function (newUser) {
 
                         if (!newUser) {
