@@ -9,7 +9,7 @@ module.exports = function (app) {
         id: req.session.passport.user
       }
     }).then(function (results) {
-      console.log(results[0].dataValues.username)
+      console.log(results[0].dataValues)
       res.json(results[0].dataValues.username)
     })
   })
@@ -86,6 +86,7 @@ module.exports = function (app) {
         body: req.body.body,
         UserId: req.session.passport.user
       }).then(function (results) {
+        console.log(results)
         res.end();
       });
     } else {
