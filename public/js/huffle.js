@@ -13,11 +13,7 @@ $("#post-submit").on("click", function (event) {
         .then(function () {
 
             var row = $("<div>");
-<<<<<<< HEAD
-            row.addClass("post well");
-=======
             row.addClass("well");
->>>>>>> 9850ba80f814b2778e49b454092fb18abd159e20
 
             row.append("<p>" + newPost.title + "  </p>");
             row.append("<p>" + newPost.body + "</p>");
@@ -40,11 +36,7 @@ $.get("/api/platform", function (data) {
         for (var i = 0; i < data.length; i++) {
 
             var row = $("<div>");
-<<<<<<< HEAD
-            row.addClass("post well");
-=======
             row.addClass("well");
->>>>>>> 9850ba80f814b2778e49b454092fb18abd159e20
 
             row.append("<p>" + data[i].title + "</p>");
             row.append("<p>" + data[i].body + "</p>");
