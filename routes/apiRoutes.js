@@ -61,6 +61,129 @@ module.exports = function (app) {
     });
   });
 
+  // Gryff get
+  app.get("/api/gryffindor", function (req, res) {
+
+    db.GryffPost.findAll({
+      include: [{
+        model: db.User
+      }]
+    }).then(function (results) {
+      res.json(results)
+    });
+
+  });
+
+  // Gryff Create
+  app.post("/api/gryffindor", function (req, res) {
+    console.log("Thread Data:");
+    console.log(req.body);
+    console.log(req.session.passport.user)
+    if (db.User.house === "Gryffindor") {
+      db.GryffPost.create({
+        title: req.body.title,
+        body: req.body.body,
+        UserId: req.session.passport.user
+      }).then(function (results) {
+        res.end();
+      });
+    } else {
+      console.log("You are not a member of that house")
+    }
+  });
+  // Huff get
+  app.get("/api/hufflepuff", function (req, res) {
+
+    db.HuffPost.findAll({
+      include: [{
+        model: db.User
+      }]
+    }).then(function (results) {
+      res.json(results)
+    });
+
+  });
+
+  // Huff Create
+  app.post("/api/hufflepuff", function (req, res) {
+    console.log("Thread Data:");
+    console.log(req.body);
+    console.log(req.session.passport.user)
+    if (db.User.house === "Hufflepuff") {
+      db.HuffPost.create({
+        title: req.body.title,
+        body: req.body.body,
+        UserId: req.session.passport.user
+      }).then(function (results) {
+        res.end();
+      });
+    } else {
+      console.log("You are not a member of that house")
+    }
+  });
+  // Ravenclaw get
+  app.get("/api/ravenclaw", function (req, res) {
+
+    db.RavenPost.findAll({
+      include: [{
+        model: db.User,
+        where: { id: req.session.passport.user }
+      }]
+    }).then(function (results) {
+      res.json(results)
+    });
+
+  });
+
+  // Ravenclaw Create
+  app.post("/api/ravenclaw", function (req, res) {
+    console.log("Thread Data:");
+    console.log(req.body);
+    console.log(req.session.passport.user)
+    if (db.User.house === "Ravenclaw") {
+      db.RavenPost.create({
+        title: req.body.title,
+        body: req.body.body,
+        UserId: req.session.passport.user
+      }).then(function (results) {
+        res.end();
+      });
+    } else {
+      console.log("You are not a member of that house")
+    }
+  });
+  // Slytherin get
+  app.get("/api/slytherin", function (req, res) {
+
+    db.SlyPost.findAll({
+      include: [{
+        model: db.User,
+        where: { id: req.session.passport.user }
+      }]
+    }).then(function (results) {
+      res.json(results)
+    });
+
+  });
+
+  // Slytherin Create
+  app.post("/api/slytherin", function (req, res) {
+    console.log("Thread Data:");
+    console.log(req.body);
+    console.log(req.session.passport.user)
+    if (db.User.house === "Slytherin") {
+      db.SlyPost.create({
+        title: req.body.title,
+        body: req.body.body,
+        UserId: req.session.passport.user
+      }).then(function (results) {
+        res.end();
+      });
+    } else {
+      console.log("You are not a member of that house")
+    }
+  });
+
   // Delete an post by id
   app.delete("/api/platform/:id", function (req, res) {
     db.Post.destroy({
