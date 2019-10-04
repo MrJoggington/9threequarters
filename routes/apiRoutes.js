@@ -79,23 +79,24 @@ module.exports = function (app) {
   app.post("/api/gryffindor", function (req, res) {
     console.log("Thread Data:");
     console.log(req.body);
-    console.log(req.session.passport.user)
+    console.log(req.session.passport)
     db.User.findAll({ where: { id: req.session.passport.user } })
-      .then(function (res) {
+      .then(function (res, post) {
         if (res[0].dataValues.House === "Gryffindor") {
           db.GryffPost.create({
             title: req.body.title,
             body: req.body.body,
             UserId: req.session.passport.user
+          }).then(function (results) {
+            post.end()
           })
         } else {
           console.log("You are not a member of that house")
         }
 
 
-      }).then(function (resultss) {
-        res.json(resultss)
       })
+
 
 
   });
