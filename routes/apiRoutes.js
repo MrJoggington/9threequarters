@@ -39,27 +39,28 @@ module.exports = function (app) {
       failureRedirect: '/',
     })
   );
-  // Get all posts
-  app.get("/api/platform", function (req, res) {
+  // // Get all posts
+  // app.get("/api/platform", function (req, res) {
 
-    db.Post.findAll({}).then(function (results) {
-      res.json(results)
-    });
+  //   db.Post.findAll({ include: [{ model: db.User }] }).then(function (results) {
+  //     res.json(results)
+  //   });
 
-  });
+  // });
 
-  // Create a new post
-  app.post("/api/platform", function (req, res) {
-    console.log("Thread Data:");
-    console.log(req.body);
-    console.log(req.session.passport.user)
-    db.Post.create({
-      title: req.body.title,
-      body: req.body.body
-    }).then(function (results) {
-      res.end();
-    });
-  });
+  // // Create a new post
+  // app.post("/api/platform", function (req, res) {
+  //   console.log("Thread Data:");
+  //   console.log(req.body);
+  //   console.log(req.session.passport.user)
+  //   db.Post.create({
+  //     title: req.body.title,
+  //     body: req.body.body,
+  //     UserId: req.session.passport.user
+  //   }).then(function (results) {
+  //     res.end();
+  //   });
+  // });
 
   // Gryff get
   app.get("/api/gryffindor", function (req, res) {
@@ -126,8 +127,7 @@ module.exports = function (app) {
 
     db.RavenPost.findAll({
       include: [{
-        model: db.User,
-        where: { id: req.session.passport.user }
+        model: db.User
       }]
     }).then(function (results) {
       res.json(results)
@@ -157,8 +157,7 @@ module.exports = function (app) {
 
     db.SlyPost.findAll({
       include: [{
-        model: db.User,
-        where: { id: req.session.passport.user }
+        model: db.User
       }]
     }).then(function (results) {
       res.json(results)
