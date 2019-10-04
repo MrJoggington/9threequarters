@@ -8,7 +8,7 @@ $("#post-submit").on("click", function (event) {
         createdAt: moment().format("YYYY-MM-DD HH:mm:ss")
     };
 
-    $.post("/api/platform", newPost)
+    $.post("/api/hufflepuff", newPost)
         // On success, run the following code
         .then(function () {
 
@@ -29,7 +29,7 @@ $("#post-submit").on("click", function (event) {
 });
 
 
-$.get("/api/platform", function (data) {
+$.get("/api/hufflepuff", function (data) {
 
     if (data.length !== 0) {
 

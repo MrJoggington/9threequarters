@@ -80,18 +80,24 @@ module.exports = function (app) {
     console.log("Thread Data:");
     console.log(req.body);
     console.log(req.session.passport.user)
-    if (db.User.house === "Gryffindor") {
-      db.GryffPost.create({
-        title: req.body.title,
-        body: req.body.body,
-        UserId: req.session.passport.user
-      }).then(function (results) {
-        console.log(results)
-        res.end();
-      });
-    } else {
-      console.log("You are not a member of that house")
-    }
+    db.User.findAll({ where: { id: req.session.passport.user } })
+      .then(function (res) {
+        if (res[0].dataValues.House === "Gryffindor") {
+          db.GryffPost.create({
+            title: req.body.title,
+            body: req.body.body,
+            UserId: req.session.passport.user
+          })
+        } else {
+          console.log("You are not a member of that house")
+        }
+
+
+      }).then(function (resultss) {
+        res.json(resultss)
+      })
+
+
   });
   // Huff get
   app.get("/api/hufflepuff", function (req, res) {
