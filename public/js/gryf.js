@@ -38,7 +38,7 @@ $.get("/api/platform", function (data) {
             var row = $("<div>");
             row.addClass("post");
 
-            row.append("<p>" + data[i].author + "</p>");
+            row.append("<p>" + data[i].title + "</p>");
             row.append("<p>" + data[i].body + "</p>");
             row.append("<p>At " + moment(data[i].createdAt).format("h:mma on dddd") +
                 "</p>");
