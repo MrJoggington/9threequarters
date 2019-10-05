@@ -9,7 +9,7 @@ module.exports = function (app) {
         id: req.session.passport.user
       }
     }).then(function (results) {
-      console.log(results[0].dataValues.username)
+      console.log(results[0].dataValues)
       res.json(results[0].dataValues.username)
     })
   })
@@ -72,26 +72,32 @@ module.exports = function (app) {
     }).then(function (results) {
       res.json(results)
     });
-
   });
+
 
   // Gryff Create
-  app.post("/api/gryffindor", function (req, res) {
+  app.post("/api/gryffindor", function (req, response) {
     console.log("Thread Data:");
     console.log(req.body);
-    console.log(req.session.passport.user)
-    if (db.User.house === "Gryffindor") {
-      db.GryffPost.create({
-        title: req.body.title,
-        body: req.body.body,
-        UserId: req.session.passport.user
-      }).then(function (results) {
-        res.end();
-      });
-    } else {
-      console.log("You are not a member of that house")
-    }
+    console.log(req.session.passport)
+    db.User.findAll({ where: { id: req.session.passport.user } })
+      .then(function (res, post) {
+        if (res[0].dataValues.House === "Gryffindor") {
+          db.GryffPost.create({
+            title: req.body.title,
+            body: req.body.body,
+            UserId: req.session.passport.user
+          }).then(function (results) {
+            response.json(results)
+          })
+        } else {
+          console.log("You are not a member of that house")
+        }
+
+
+      })
   });
+
   // Huff get
   app.get("/api/hufflepuff", function (req, res) {
 
@@ -106,21 +112,26 @@ module.exports = function (app) {
   });
 
   // Huff Create
-  app.post("/api/hufflepuff", function (req, res) {
+  app.post("/api/hufflepuff", function (req, response) {
     console.log("Thread Data:");
     console.log(req.body);
-    console.log(req.session.passport.user)
-    if (db.User.house === "Hufflepuff") {
-      db.HuffPost.create({
-        title: req.body.title,
-        body: req.body.body,
-        UserId: req.session.passport.user
-      }).then(function (results) {
-        res.end();
-      });
-    } else {
-      console.log("You are not a member of that house")
-    }
+    console.log(req.session.passport)
+    db.User.findAll({ where: { id: req.session.passport.user } })
+      .then(function (res, post) {
+        if (res[0].dataValues.House === "Hufflepuff") {
+          db.HuffPost.create({
+            title: req.body.title,
+            body: req.body.body,
+            UserId: req.session.passport.user
+          }).then(function (results) {
+            response.json(results)
+          })
+        } else {
+          console.log("You are not a member of that house")
+        }
+
+
+      })
   });
   // Ravenclaw get
   app.get("/api/ravenclaw", function (req, res) {
@@ -136,21 +147,26 @@ module.exports = function (app) {
   });
 
   // Ravenclaw Create
-  app.post("/api/ravenclaw", function (req, res) {
+  app.post("/api/ravenclaw", function (req, response) {
     console.log("Thread Data:");
     console.log(req.body);
-    console.log(req.session.passport.user)
-    if (db.User.house === "Ravenclaw") {
-      db.RavenPost.create({
-        title: req.body.title,
-        body: req.body.body,
-        UserId: req.session.passport.user
-      }).then(function (results) {
-        res.end();
-      });
-    } else {
-      console.log("You are not a member of that house")
-    }
+    console.log(req.session.passport)
+    db.User.findAll({ where: { id: req.session.passport.user } })
+      .then(function (res, post) {
+        if (res[0].dataValues.House === "Ravenclaw") {
+          db.RavenPost.create({
+            title: req.body.title,
+            body: req.body.body,
+            UserId: req.session.passport.user
+          }).then(function (results) {
+            response.json(results)
+          })
+        } else {
+          console.log("You are not a member of that house")
+        }
+
+
+      })
   });
   // Slytherin get
   app.get("/api/slytherin", function (req, res) {
@@ -166,21 +182,26 @@ module.exports = function (app) {
   });
 
   // Slytherin Create
-  app.post("/api/slytherin", function (req, res) {
+  app.post("/api/slytherin", function (req, response) {
     console.log("Thread Data:");
     console.log(req.body);
-    console.log(req.session.passport.user)
-    if (db.User.house === "Slytherin") {
-      db.SlyPost.create({
-        title: req.body.title,
-        body: req.body.body,
-        UserId: req.session.passport.user
-      }).then(function (results) {
-        res.end();
-      });
-    } else {
-      console.log("You are not a member of that house")
-    }
+    console.log(req.session.passport)
+    db.User.findAll({ where: { id: req.session.passport.user } })
+      .then(function (res, post) {
+        if (res[0].dataValues.House === "Slytherin") {
+          db.SlyPost.create({
+            title: req.body.title,
+            body: req.body.body,
+            UserId: req.session.passport.user
+          }).then(function (results) {
+            response.json(results)
+          })
+        } else {
+          console.log("You are not a member of that house")
+        }
+
+
+      })
   });
 
   // Delete an post by id

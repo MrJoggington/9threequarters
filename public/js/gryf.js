@@ -10,8 +10,8 @@ $("#post-submit").on("click", function (event) {
 
     $.post("/api/gryffindor", newPost)
         // On success, run the following code
-        .then(function () {
-
+        .then(function (results) {
+            console.log(results)
             var row = $("<div>");
             row.addClass("well");
 
@@ -46,6 +46,7 @@ $.get("/api/gryffindor", function (data) {
             $("#post-area").prepend(row);
 
         }
+
 
     }
 
