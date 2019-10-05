@@ -9,8 +9,18 @@ var PORT = process.env.PORT || 3000;
 var cookieSession = require('cookie-session')
 var bodyParser = require('body-parser')
 
-// salt const
+var mysql = require("mysql");
 
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "pikablu112yt!",
+    database: "platform_db"
+  });
+};
 
 // Middleware
 app.use(bodyParser.urlencoded({
