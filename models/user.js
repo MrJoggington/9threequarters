@@ -8,34 +8,20 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        house: {
+        password: {
             type: DataTypes.STRING,
-            unique: false,
             allowNull: false,
             validate: {
                 notEmpty: true
             }
         },
-        password: {
-<<<<<<< HEAD
+        House: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            allowNull: true
         }
     }, {
         dialect: 'mysql'
     });
-=======
-            type: DataTypes.STRING, allowNull: false, validate: { notEmpty: true }
-        },
-        House: { type: DataTypes.STRING, allowNull: true }
-    },
-        {
-            dialect: 'mysql'
-        });
->>>>>>> 939e0cecbc6fb6c12697f12851d4953f7e241247
 
     User.associate = function (models) {
 
