@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "kmmdev",
-=======
-    "password": "Smitty#1",
->>>>>>> 939e0cecbc6fb6c12697f12851d4953f7e241247
     "database": "platform_db",
     "host": "localhost",
     "dialect": "mysql"

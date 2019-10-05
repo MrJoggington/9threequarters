@@ -1,0 +1,59 @@
+header {
+    text-align: center;
+    border: solid white 1px;
+    margin: 15px 10px 50px 10px;
+
+}
+
+body {
+    background-image: url("../images/hogwartsnighttheme.jpg");
+    color: white;
+}
+
+hr {
+    border: 1px solid white;
+}
+
+.row {
+    text-align: center;
+}
+
+.col-4 {
+    text-align: center;
+    border: solid white 1px;
+}
+
+img {
+    height: 250px;
+    width: 200px;
+    margin: 10px 10px;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+#banner {
+    margin: 10px;
+}
+
+#houses {
+    margin-left: 200px;
+    background-image: none;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 770px) {
+
+    img {
+        height: 150px;
+        width: 100px;
+    }
+
+    #houses {
+        margin-left: 75px;
+
+    }
+
+}

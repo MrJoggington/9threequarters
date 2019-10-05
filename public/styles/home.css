@@ -1,0 +1,51 @@
+body {
+    background-image: url("../images/brick.jpg");
+    background-size: 30%;
+    margin: 15px;
+    opacity: .9;
+}
+
+#logo {
+    margin: 20px 20px;
+    width: 80%;
+    height: 100%;
+}
+
+#hagrid {
+    margin-top: 50px;
+    text-align: center;
+}
+
+a {
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#guestcont {
+    bottom: 175px;
+    position: relative;
+}
+
+section,
+footer,
+.jumbotron {
+    background-color: linen;
+    margin: 10px;
+}
+
+ul {
+    margin-top: 100px;
+}
+
+li {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.jumbotron {
+    width: 98%;
+}
+
+h4 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
