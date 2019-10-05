@@ -25,10 +25,10 @@ module.exports = function (app) {
   })
   // auth sign up test
   app.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/hogwarts',
+      successRedirect: '/hogwarts',
 
-    failureRedirect: '/'
-  }
+      failureRedirect: '/'
+    }
 
 
   ));
@@ -80,7 +80,11 @@ module.exports = function (app) {
     console.log("Thread Data:");
     console.log(req.body);
     console.log(req.session.passport)
-    db.User.findAll({ where: { id: req.session.passport.user } })
+    db.User.findAll({
+        where: {
+          id: req.session.passport.user
+        }
+      })
       .then(function (res, post) {
         if (res[0].dataValues.House === "Gryffindor") {
           db.GryffPost.create({
@@ -116,7 +120,11 @@ module.exports = function (app) {
     console.log("Thread Data:");
     console.log(req.body);
     console.log(req.session.passport)
-    db.User.findAll({ where: { id: req.session.passport.user } })
+    db.User.findAll({
+        where: {
+          id: req.session.passport.user
+        }
+      })
       .then(function (res, post) {
         if (res[0].dataValues.House === "Hufflepuff") {
           db.HuffPost.create({
@@ -137,9 +145,7 @@ module.exports = function (app) {
   app.get("/api/ravenclaw", function (req, res) {
 
     db.RavenPost.findAll({
-      include: [{
-        model: db.User
-      }]
+      include: [db.User]
     }).then(function (results) {
       res.json(results)
     });
@@ -151,7 +157,11 @@ module.exports = function (app) {
     console.log("Thread Data:");
     console.log(req.body);
     console.log(req.session.passport)
-    db.User.findAll({ where: { id: req.session.passport.user } })
+    db.User.findAll({
+        where: {
+          id: req.session.passport.user
+        }
+      })
       .then(function (res, post) {
         if (res[0].dataValues.House === "Ravenclaw") {
           db.RavenPost.create({
@@ -186,7 +196,11 @@ module.exports = function (app) {
     console.log("Thread Data:");
     console.log(req.body);
     console.log(req.session.passport)
-    db.User.findAll({ where: { id: req.session.passport.user } })
+    db.User.findAll({
+        where: {
+          id: req.session.passport.user
+        }
+      })
       .then(function (res, post) {
         if (res[0].dataValues.House === "Slytherin") {
           db.SlyPost.create({
@@ -218,15 +232,15 @@ module.exports = function (app) {
   //Update a post
   app.put("/api/platform", function (req, res) {
     db.Post.update({
-      title: req.body.title,
-      body: req.body.body
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function (results) {
-      res.json(results);
-    })
+        title: req.body.title,
+        body: req.body.body
+      }, {
+        where: {
+          id: req.body.id
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
       .catch(function (err) {
         res.json(err);
       });
