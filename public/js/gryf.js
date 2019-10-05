@@ -40,8 +40,7 @@ $.get("/api/gryffindor", function (data) {
             row.attr("style", "border: 1px solid black;")
             row.append("<p style='font-weight: bold'>" + data[i].title + "</p>");
             row.append("<p>" + data[i].body + "</p>");
-            row.append("<p>At " + moment(data[i].createdAt).format("h:mma on dddd") +
-                "</p>");
+            row.append("<p>Posted " + moment(data[i].createdAt).format("h:mma on dddd") + " by " + data[i].User.username + "</p>");
 
             $("#post-area").prepend(row);
 
