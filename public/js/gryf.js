@@ -17,7 +17,7 @@ $("#post-submit").on("click", function (event) {
             row.attr("style", "border: 1px solid black;")
             row.append("<p style='font-weight: bold'>" + newPost.title + "</p>");
             row.append("<p>" + newPost.body + "</p>");
-            row.append("<p>Posted " + moment(data[i].createdAt).format("h:mma on dddd") + " by " + data[i].User.username + "</p>");
+            row.append("<p>At " + moment(newPost.createdAt).format("h:mma on dddd") + "</p>");
 
             $("#post-area").prepend(row);
 
