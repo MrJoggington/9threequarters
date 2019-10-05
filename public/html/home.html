@@ -19,8 +19,10 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         body {
-            background-image: url("../images/hogwartsnighttheme.jpg");
-            margin: 25px;
+            background-image: url("../images/brick.jpg");
+            background-size: 30%;
+            margin: 15px;
+            opacity: .9;
         }
 
         #logo {
@@ -35,125 +37,170 @@
         }
 
         a {
-            color: white;
+            color: black;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #guestcont {
+            bottom: 175px;
+            position: relative;
+        }
+
+        section,
+        footer,
+        .jumbotron {
+            background-color: linen;
+            margin: 10px;
+        }
+
+        .jumbotron {
+            width: 98%;
+        }
+
+        h4 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
     </style>
 </head>
 
 <body>
+    <header>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <img id="logo" src="https://fontmeme.com/permalink/190927/2bd7daba91cfbdde61a4f7111f1ef47c.png"
-                    alt="harry-potter-font">
-            </div>
-            <div class="col-2">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signup">
-                    Sign Up
-                </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signupLabel">Enter username and password</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+        <div class="container-fluid jumbotron">
+            <div class="row">
+                <div class="col">
+                    <img id="logo" src="https://fontmeme.com/permalink/190927/2bd7daba91cfbdde61a4f7111f1ef47c.png"
+                        alt="harry-potter-font">
+                </div>
+                <div class="col-2">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#signup">
+                        Sign Up
+                    </button>
+
+                    <!-- REGISTER Modal -->
+                    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="signupLabel">Enter username and password</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/register" method="post">
+                                        <div>
+                                            <label>Username:</label>
+                                            <input type="text" name="username" />
+                                        </div>
+                                        <label>Pick a House: </label>
+                                        <select data-placeholder="" class="chosen-select" name="house">
+                                            <option value="" disabled selected>Select your House</option>
+                                            <option value="Gryffindor">Gryffindor</option>
+                                            <option value="Hufflepuff">Hufflepuff</option>
+                                            <option value="Ravenclaw">Ravenclaw </option>
+                                            <option value="Slytherin">Slytherin</option>
+                                        </select>
+                                        <div>
+                                            <label>Password:</label>
+                                            <input type="password" name="password" />
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Register" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+
                             </div>
-                            <div class="modal-body">
-                                <form action="/register" method="post">
-                                    <div>
-                                        <label>Username:</label>
-                                        <input type="text" name="username" />
-                                    </div>
-                                    <div>
-                                        <label>Password:</label>
-                                        <input type="password" name="password" />
-                                    </div>
-                                    <label>Pick a House: </label>
-                                    <select data-placeholder="" class="chosen-select" name="house">
-                                        <option value="" disabled selected>Select your House</option>
-                                        <option value="Gryffindor">Gryffindor</option>
-                                        <option value="Hufflepuff">Hufflepuff</option>
-                                        <option value="Ravenclaw">Ravenclaw </option>
-                                        <option value="Slytherin">Slytherin</option>
-                                    </select>
-                                    <div>
-                                        <input type="submit" value="Register" />
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#login">
+                        Sign In
+                    </button>
+
+                    <!-- SIGN IN Modal -->
+                    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="signinLabel">Login credentials here</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/login" method="post">
+                                        <div>
+                                            <label>Username:</label>
+                                            <input type="text" name="username" />
+                                        </div>
+                                        <div>
+                                            <label>Password:</label>
+                                            <input type="password" name="password" />
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Log In" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-2">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
-                    Sign In
-                </button>
+        </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signinLabel">Login credentials here</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/login" method="post">
-                                    <div>
-                                        <label>Username:</label>
-                                        <input type="text" name="username" />
-                                    </div>
-                                    <div>
-                                        <label>Password:</label>
-                                        <input type="password" name="password" />
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Log In" />
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
+    </header>
+
+    <section>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="../images/wall_brick_archway.png" height="300px" width="200px"
+                        style="border-top-right-radius: 75px; border-top-left-radius: 75px">
+                    <div id="guestcont" class="container">
+                        <div class="row">
+                            <p><a href="/hogwarts">
+                                    <h3>Go to Hogwarts!</h3>
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="../images/hagridface.jpg" id="hagrid" alt="Hagrid's face" height="200px" width="200px"
+                        style="border-radius: 100px; opacity: 1;" onclick="play()" value="play"><audio id="audio"
+                        src="../audio/YER A WIZARD.mp3"></audio>
+                    <div class="container">
+                        <div class="row">
+                            <p>yer a wizard</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <br>
+    </section>
 
-    <br>
-    <div id="hagrid" class="container">
-        <div class="row">
-            <img src="../images/hagridface.jpg" id="hagrid" alt="Hagrid's face" height="300px" width="300px"
-                onclick="play()" value="play"><audio id="audio" src="../audio/YER A WIZARD.mp3"></audio>
-        </div>
-    </div>
+    <footer>
+        <a href="https://github.com/MrJoggington/p93q"><img src="../images/github_logo.png" height="75" width="75"
+                alt="github repo" style="display: inline-block; margin: 10px;"></a>
+        <h4 style=" display:inline-block;">Github Repo</h4>
+    </footer>
 
-    <br>
-
-    <div id="guestcont" class="container">
-        <div class="row">
-            <p><a href="/hogwarts">
-                    <h3>Continue as Guest</h3>
-                </a></p>
-        </div>
-    </div>
 
     <script>
         function play() {
