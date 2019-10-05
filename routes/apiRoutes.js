@@ -205,10 +205,10 @@ module.exports = function (app) {
   });
 
   // Delete an post by id
-  app.delete("/api/platform/:id", function (req, res) {
+  app.delete("/api/posts/:id", function (req, res) {
     db.Post.destroy({
       where: {
-        id: req.params.id
+        id: req.body.id
       }
     }).then(function (results) {
       res.json(results);

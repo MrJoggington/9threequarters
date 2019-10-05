@@ -5,7 +5,7 @@ $("#post-submit").on("click", function (event) {
     var newPost = {
         title: $("#title").val().trim(),
         body: $("#body").val().trim(),
-        createdAt: moment().format("YYYY-MM-DD HH:mm:ss")
+        createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
 
     $.post("/api/gryffindor", newPost)
@@ -18,6 +18,7 @@ $("#post-submit").on("click", function (event) {
             row.append("<p>" + newPost.title + "  </p>");
             row.append("<p>" + newPost.body + "</p>");
             row.append("<p>At " + moment(newPost.createdAt).format("h:mma on dddd") + "</p>");
+
 
             $("#post-area").prepend(row);
 
@@ -42,6 +43,7 @@ $.get("/api/gryffindor", function (data) {
             row.append("<p>" + data[i].body + "</p>");
             row.append("<p>At " + moment(data[i].createdAt).format("h:mma on dddd") +
                 "</p>");
+
 
             $("#post-area").prepend(row);
 
